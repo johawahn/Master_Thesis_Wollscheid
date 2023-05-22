@@ -13,7 +13,7 @@ import plotly.express as px
 
 
 
-data = pd.read_csv('coordinates_GroupA.csv')
+data = pd.read_csv('coordinates.csv')
 data = data.rename(columns={'Precursor.Id':'peptide'})
 
 samples = data.iloc[:,1].unique().tolist()
