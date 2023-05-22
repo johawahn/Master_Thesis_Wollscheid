@@ -13,7 +13,7 @@ import plotly.express as px
 
 
 
-data = pd.read_csv('coordinates.csv')
+data = pd.read_csv('coordinates_GroupA.csv')
 data = data.rename(columns={'Precursor.Id':'peptide'})
 
 samples = data.iloc[:,1].unique().tolist()
@@ -22,7 +22,9 @@ DEFAULT_SIZE = 4
 HIGHLIGHT_SIZE = 10
 SELECTED = None
 
+random.seed(10)
 get_colors = lambda n: ["#%06x" % random.randint(0, 0xFFFFFF) for _ in range(n)]
+
 palette = get_colors(len(data['ProteinGroup'].unique()))
 
 styles = {}
@@ -40,14 +42,12 @@ app.layout = html.Div([
 
 @app.callback(
     Output('graph-content', 'figure'),
-    Input('graph-content', 'hoverData'), 
     Input('dropdown-selection', 'value'),
+    Input('graph-content', 'hoverData'), 
     State('graph-content', 'figure'),
 )
 
-def update_graph(hover_data, value, fig):
-    
-    df = data[data['Run']==value]
+def update_graph(value, hover_data, fig):
     
     global SELECTED
     if hover_data is not None:
@@ -69,7 +69,7 @@ def update_graph(hover_data, value, fig):
                           legend_title = 'Protein Groups',
                           title = value) 
 
-
+        df = data[data['Run']==value]
         
         for ProteinGroup, peptides in df.groupby('ProteinGroup'):
             fig.add_scatter(
