@@ -13,7 +13,7 @@ import plotly.express as px
 
 
 
-data = pd.read_csv('coordinates.csv')
+data = pd.read_csv('coordinates.csv') #Coordinates obtained using the extract_mz_rt_psm_app.py script
 data = data.rename(columns={'Precursor.Id':'peptide'})
 
 samples = data.iloc[:,1].unique().tolist()
