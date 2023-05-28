@@ -34,12 +34,6 @@ def extract_rt_mz (psm_path, top_feature_list=None):
     
     return(coor, sample_names)
 
-#feature_list = pd.read_csv('/Volumes/Untitled/230112_RFE_REDO_221219_Fragpipe/230112_peptide_expr_matrix_w_classes_most_contr_feat.csv' , header=None, usecols=[0])[0].to_list()
-
-#path = '/Users/johannawahn/Desktop/Wollscheid_Lab/psm.tsv'
-#coordinates, files = extract_rt_mz(path)
-
-#coordinates.to_csv('/Users/johannawahn/Desktop/230215_interactive_plot/coordinates.csv')
 
 
 
